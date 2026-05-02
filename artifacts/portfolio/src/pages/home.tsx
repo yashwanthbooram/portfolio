@@ -114,12 +114,12 @@ export default function Home() {
 
   const bg = dark ? "bg-[#080808]" : "bg-[#fafafa]";
   const text = dark ? "text-zinc-100" : "text-zinc-900";
-  const textMuted = dark ? "text-zinc-500" : "text-zinc-500";
-  const textDim = dark ? "text-zinc-600" : "text-zinc-400";
+  const textMuted = dark ? "text-zinc-300" : "text-zinc-600";
+  const textDim = dark ? "text-zinc-500" : "text-zinc-400";
   const border = dark ? "border-zinc-800" : "border-zinc-200";
   const cardBg = dark ? "bg-zinc-900/30" : "bg-white";
   const cardHover = dark ? "hover:border-zinc-600" : "hover:border-zinc-400";
-  const tagBorder = dark ? "border-zinc-800 text-zinc-500 group-hover:border-zinc-700" : "border-zinc-200 text-zinc-500 group-hover:border-zinc-300";
+  const tagBorder = dark ? "border-zinc-700 text-zinc-400 group-hover:border-zinc-500" : "border-zinc-200 text-zinc-500 group-hover:border-zinc-300";
   const navBg = scrolled ? (dark ? "border-b border-zinc-800/70 bg-[#080808]/90 backdrop-blur-md" : "border-b border-zinc-200/70 bg-[#fafafa]/90 backdrop-blur-md") : "bg-transparent border-transparent";
   const monoColor = dark ? "text-zinc-400" : "text-zinc-600";
   const monoValue = dark ? "text-zinc-300" : "text-zinc-700";
@@ -222,7 +222,7 @@ export default function Home() {
           <FadeIn><SectionLabel number="01" label="About" dark={dark} /></FadeIn>
           <div className="grid md:grid-cols-2 gap-16">
             <FadeIn delay={0.05}>
-              <div className={`space-y-5 font-light leading-[1.8] text-[15px] ${textMuted}`}>
+              <div className={`space-y-5 leading-[1.8] text-[17px] ${textMuted}`}>
                 <p>I'm a B.Tech Computer Science student at Lovely Professional University, specialising in Machine Learning. My engineering is grounded in the belief that great AI isn't just about accurate models — it's about deploying them into systems real people can use.</p>
                 <p>I've built systems ranging from high-accuracy deep learning models for satellite imagery to full-stack platforms powered by LLMs. I thrive where data science meets product development.</p>
                 <p className={`text-sm ${textDim}`}>Based in Hyderabad, Telangana · Open to full-time opportunities and meaningful collaborations.</p>
@@ -266,7 +266,7 @@ export default function Home() {
                       <ExternalLink className="w-5 h-5" />
                     </a>
                   </div>
-                  <div className="grid md:grid-cols-3 gap-6 mb-6 text-sm leading-relaxed">
+                  <div className="grid md:grid-cols-3 gap-6 mb-6 text-[15px] leading-relaxed">
                     {[["Problem", p.problem], ["Approach", p.approach], ["Impact", p.impact]].map(([label, val]) => (
                       <div key={label}>
                         <p className={`text-[10px] uppercase tracking-widest mb-1.5 ${dark ? "text-zinc-700" : "text-zinc-400"}`} style={{ fontFamily: MONO }}>{label}</p>
@@ -297,7 +297,7 @@ export default function Home() {
                   <p className={`text-sm mt-1 ${textMuted}`}>Outlier</p>
                 </div>
               </div>
-              <ul className={`space-y-3 text-sm leading-relaxed mb-6 ${textMuted}`}>
+              <ul className={`space-y-3 text-[16px] leading-relaxed mb-6 ${textMuted}`}>
                 {[
                   "Evaluated and optimised large language model outputs for sensitive content detection, improving consistency and contextual accuracy across multiple programming languages.",
                   "Utilised Python, Java, C++, and JavaScript for prompt creation, testing, and analysis.",
@@ -327,7 +327,7 @@ export default function Home() {
                   <p className={`text-[10px] uppercase tracking-widest mb-5 ${textDim}`} style={{ fontFamily: MONO }}>{s.group}</p>
                   <ul className="space-y-2.5">
                     {s.items.map((item) => (
-                      <li key={item} className={`text-sm font-light flex items-center gap-2.5 ${textMuted}`}>
+                      <li key={item} className={`text-[15px] flex items-center gap-2.5 ${textMuted}`}>
                         <span className={`w-1 h-1 rounded-full shrink-0 ${dark ? "bg-zinc-700" : "bg-zinc-300"}`} />
                         {item}
                       </li>
@@ -349,9 +349,9 @@ export default function Home() {
                 {EDUCATION.map((e) => (
                   <div key={e.degree} className={`border-l pl-5 transition-colors ${dark ? "border-zinc-800 hover:border-zinc-600" : "border-zinc-200 hover:border-zinc-400"}`}>
                     <p className={`text-[10px] mb-1 ${textDim}`} style={{ fontFamily: MONO }}>{e.period}</p>
-                    <h3 className={`text-sm font-semibold mb-0.5 ${text}`}>{e.degree}</h3>
-                    <p className={`text-sm ${textMuted}`}>{e.school}</p>
-                    <p className={`text-xs mt-0.5 ${textDim}`}>{e.location} · {e.note}</p>
+                    <h3 className={`text-[15px] font-semibold mb-0.5 ${text}`}>{e.degree}</h3>
+                    <p className={`text-[15px] ${textMuted}`}>{e.school}</p>
+                    <p className={`text-sm mt-0.5 ${textDim}`}>{e.location} · {e.note}</p>
                   </div>
                 ))}
               </div>
@@ -362,8 +362,8 @@ export default function Home() {
                 {CERTS.map((c) => (
                   <div key={c.title} className={`border-l pl-5 transition-colors ${dark ? "border-zinc-800 hover:border-zinc-600" : "border-zinc-200 hover:border-zinc-400"}`}>
                     <p className={`text-[10px] mb-1 ${textDim}`} style={{ fontFamily: MONO }}>{c.date}</p>
-                    <h3 className={`text-sm font-semibold mb-0.5 ${text}`}>{c.title}</h3>
-                    <p className={`text-sm ${textMuted}`}>{c.issuer}</p>
+                    <h3 className={`text-[15px] font-semibold mb-0.5 ${text}`}>{c.title}</h3>
+                    <p className={`text-[15px] ${textMuted}`}>{c.issuer}</p>
                   </div>
                 ))}
               </div>
