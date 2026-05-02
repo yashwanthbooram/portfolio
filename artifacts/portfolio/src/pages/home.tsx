@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Github, 
   Linkedin, 
@@ -20,7 +20,6 @@ import {
 import { SiPython, SiPytorch, SiReact, SiNodedotjs, SiMongodb, SiTensorflow, SiScikitlearn, SiKeras, SiMysql } from "react-icons/si";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 const navItems = [
   { name: "About", href: "#about" },
@@ -31,9 +30,6 @@ const navItems = [
 ];
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
@@ -65,11 +61,13 @@ export default function Home() {
   return (
     <div className="relative min-h-screen selection:bg-primary/30 selection:text-primary-foreground">
       <div className="noise-bg" />
-      <div className="glow-point fixed w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -top-40 -left-40 mix-blend-screen" />
-      <div className="glow-point fixed w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] pointer-events-none bottom-0 right-0 mix-blend-screen" />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border/40 bg-background/50 backdrop-blur-xl supports-[backdrop-filter]:bg-background/20">
+      {/* Navigation — transparent over hero, styled over rest */}
+      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        activeSection === '' || activeSection === 'hero'
+          ? 'bg-transparent border-transparent'
+          : 'border-b border-border/40 bg-background/50 backdrop-blur-xl'
+      }`}>
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <span className="font-mono font-bold text-lg tracking-tighter text-primary">YB</span>
           <div className="hidden md:flex gap-8">
@@ -90,58 +88,48 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="container mx-auto px-6 pt-32 pb-24 max-w-5xl relative z-10">
-        
-        {/* HERO */}
-        <section id="hero" className="min-h-[80vh] flex flex-col justify-center mb-32 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono text-xs mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Available for opportunities
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-foreground">
-              Yashwanth Booram
-            </h1>
-            
-            <h2 className="text-2xl md:text-3xl text-muted-foreground font-light mb-8 max-w-2xl">
-              Machine Learning Researcher <span className="text-primary">&</span> Full-Stack Product Engineer.
-            </h2>
-            
-            <p className="text-lg text-muted-foreground max-w-2xl mb-12 font-light leading-relaxed">
-              Bridging the gap between cutting-edge AI models and robust, scalable applications. Currently exploring deep learning architectures and engineering intelligent systems.
-            </p>
+      {/* HERO — Full-screen Restraint design */}
+      <section id="hero" className="relative min-h-[100dvh] w-full bg-[#0a0a0a] flex flex-col items-center justify-center overflow-hidden">
+        <div className="restraint-grid absolute inset-0 z-0 pointer-events-none" />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
 
-            <div className="flex flex-wrap gap-4 items-center">
-              <Button onClick={() => scrollTo('projects')} className="font-mono h-12 px-8 group border border-primary bg-primary/10 hover:bg-primary/20 text-primary">
-                View Work
-                <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              
-              <div className="flex items-center gap-4 ml-4">
-                <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2" data-testid="link-github">
-                  <Github className="w-6 h-6" />
-                  <span className="sr-only">GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/yashwanthbooram" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors p-2" data-testid="link-linkedin">
-                  <Linkedin className="w-6 h-6" />
-                  <span className="sr-only">LinkedIn</span>
-                </a>
-                <a href="mailto:booramyashwanth@gmail.com" className="text-muted-foreground hover:text-primary transition-colors p-2" data-testid="link-email">
-                  <Mail className="w-6 h-6" />
-                  <span className="sr-only">Email</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </section>
+        {/* Corner status */}
+        <div className="absolute top-8 left-8 sm:top-12 sm:left-12 animate-hero-fade-2 z-10">
+          <span className="text-xs tracking-widest text-zinc-500 uppercase font-light">01 / available</span>
+        </div>
+
+        {/* Name + subtitle */}
+        <div className="relative z-10 flex flex-col items-center max-w-5xl px-6 sm:px-12">
+          <h1 className="font-['Playfair_Display'] text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] tracking-tight leading-[1.1] text-center animate-hero-fade-1 text-zinc-100 font-light">
+            Yashwanth<br />
+            <span className="italic opacity-80 pl-8 sm:pl-16">Booram</span>
+          </h1>
+          <p className="mt-12 md:mt-16 text-sm sm:text-base tracking-[0.2em] uppercase text-zinc-400 font-light animate-hero-fade-2 text-center">
+            Machine learning + full-stack engineering.
+          </p>
+        </div>
+
+        {/* Social links — bottom right */}
+        <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 flex flex-col gap-6 animate-hero-fade-3 z-10">
+          <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-github" aria-label="GitHub">
+            <Github strokeWidth={1.5} className="w-4 h-4" />
+          </a>
+          <a href="https://linkedin.com/in/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-linkedin" aria-label="LinkedIn">
+            <Linkedin strokeWidth={1.5} className="w-4 h-4" />
+          </a>
+          <a href="mailto:booramyashwanth@gmail.com" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-email" aria-label="Email">
+            <Mail strokeWidth={1.5} className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* Scroll indicator — bottom center */}
+        <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-hero-fade-3 z-10">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-zinc-600">Scroll</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-600 to-transparent" />
+        </div>
+      </section>
+
+      <main className="container mx-auto px-6 pt-24 pb-24 max-w-5xl relative z-10">
 
         {/* ABOUT */}
         <section id="about" className="py-24 border-t border-border/30">
