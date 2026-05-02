@@ -1,513 +1,505 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  ChevronRight, 
-  Code2, 
-  Database, 
-  Cpu, 
-  LineChart, 
-  Terminal, 
-  ExternalLink,
-  MapPin,
-  GraduationCap,
-  Award,
-  BarChart2,
-  Cloud
-} from "lucide-react";
-import { SiPython, SiPytorch, SiReact, SiNodedotjs, SiMongodb, SiTensorflow, SiScikitlearn, SiKeras, SiMysql } from "react-icons/si";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Github, Linkedin, Mail, ArrowUpRight, ExternalLink } from "lucide-react";
 
-const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Education", href: "#education" },
+const NAV = [
+  { label: "about", id: "about" },
+  { label: "projects", id: "projects" },
+  { label: "experience", id: "experience" },
+  { label: "skills", id: "skills" },
+  { label: "education", id: "education" },
 ];
 
+const PROJECTS = [
+  {
+    title: "Movify",
+    category: "Full-Stack · AI Platform",
+    period: "Jun – Aug 2025",
+    problem: "Build a movie platform where users get personalised recommendations and readable review summaries without wading through raw text.",
+    approach: "Engineered a scalable RESTful API with Node.js + Express for auth, movie data, and CRUD operations. Integrated an LLM for a personalised recommendation engine and automatic review summarisation. Built a dynamic React UI with component-based architecture and state management.",
+    impact: "End-to-end AI-powered product shipped solo, demonstrating full ownership from data layer to UI.",
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "LLM APIs"],
+    href: "https://github.com/yashwanthbooram",
+  },
+  {
+    title: "Ship Detection in Satellite Imagery",
+    category: "Deep Learning · Computer Vision",
+    period: "Mar – Apr 2025",
+    problem: "Detect and localise ships in high-resolution maritime satellite images where manual review is impractical.",
+    approach: "Pre-processed images with normalisation and bounding-box extraction. Developed a YOLOv3 CNN model fine-tuned for maritime scenarios.",
+    impact: "~95% training accuracy · ~92% validation accuracy",
+    stack: ["YOLOv3", "CNN", "OpenCV", "Python"],
+    href: "https://github.com/yashwanthbooram",
+  },
+  {
+    title: "Customer Behaviour Analytics",
+    category: "Data Analytics · Machine Learning",
+    period: "Jun – Jul 2024",
+    problem: "Help a retail business move from gut-feel marketing to data-driven customer targeting.",
+    approach: "Applied RFM (Recency, Frequency, Monetary) analysis and K-Means clustering to segment customers into five groups. Used the elbow method (WCSS) to determine optimal K and visualised segments via scatter plots.",
+    impact: "Actionable insights delivered to target high-value customers and improve marketing ROI.",
+    stack: ["K-Means Clustering", "RFM Analysis", "Pandas", "Matplotlib"],
+    href: "https://github.com/yashwanthbooram",
+  },
+];
+
+const SKILLS = [
+  {
+    group: "Languages",
+    items: ["Python", "Java", "JavaScript", "C++", "SQL"],
+  },
+  {
+    group: "ML / AI",
+    items: ["PyTorch", "TensorFlow", "Scikit-Learn", "Keras", "OpenCV", "Pandas", "NumPy"],
+  },
+  {
+    group: "Full-Stack",
+    items: ["React", "Node.js", "Express.js", "MongoDB", "REST APIs"],
+  },
+  {
+    group: "Data & Cloud",
+    items: ["MySQL", "Power BI", "AWS", "Google Colab", "Matplotlib"],
+  },
+];
+
+const CERTS = [
+  { title: "Machine Learning Specialisation", issuer: "Stanford / DeepLearning.AI · Coursera", date: "Jul 2025" },
+  { title: "Generative AI with Large Language Models", issuer: "Coursera", date: "Oct 2023" },
+  { title: "Dynamic Programming & Greedy Algorithms", issuer: "University of Colorado Boulder", date: "Oct 2023" },
+  { title: "Google Cybersecurity", issuer: "Google", date: "Aug 2022" },
+];
+
+const EDUCATION = [
+  {
+    degree: "B.Tech — Computer Science & Engineering",
+    school: "Lovely Professional University",
+    location: "Punjab, India",
+    period: "Oct 2022 – Present",
+    note: "CGPA 7 · Specialisation: Machine Learning",
+  },
+  {
+    degree: "Intermediate (MPC)",
+    school: "Narayana Junior College",
+    location: "Hyderabad, Telangana",
+    period: "Apr 2020 – Mar 2022",
+    note: "78.9%",
+  },
+  {
+    degree: "Matriculation",
+    school: "Sri Chaitanya Techno School",
+    location: "Hyderabad, Telangana",
+    period: "Apr 2019 – Mar 2020",
+    note: "100%",
+  },
+];
+
+function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function SectionLabel({ number, label }: { number: string; label: string }) {
+  return (
+    <div className="flex items-center gap-4 mb-16">
+      <span className="text-xs font-mono text-zinc-600">{number}</span>
+      <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{label}</span>
+      <div className="flex-1 h-px bg-zinc-800" />
+    </div>
+  );
+}
+
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id); });
       },
-      { rootMargin: "-20% 0px -80% 0px" }
+      { rootMargin: "-30% 0px -60% 0px" }
     );
-
-    document.querySelectorAll("section[id]").forEach((section) => {
-      observer.observe(section);
-    });
-
+    document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="relative min-h-screen selection:bg-primary/30 selection:text-primary-foreground">
-      <div className="noise-bg" />
+    <div className="bg-[#080808] text-zinc-100 min-h-screen" style={{ fontFamily: "'Inter', sans-serif" }}>
 
-      {/* Navigation — transparent over hero, styled over rest */}
-      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        activeSection === '' || activeSection === 'hero'
-          ? 'bg-transparent border-transparent'
-          : 'border-b border-border/40 bg-background/50 backdrop-blur-xl'
+      {/* ── NAV ── */}
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? "border-b border-zinc-800/70 bg-[#080808]/90 backdrop-blur-md" : "bg-transparent border-transparent"
       }`}>
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-mono font-bold text-lg tracking-tighter text-primary">YB</span>
-          <div className="hidden md:flex gap-8">
-            {navItems.map((item) => (
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <button onClick={() => scrollTo("hero")} className="font-mono text-sm font-medium text-zinc-100 tracking-tight">
+            yashwanth.
+          </button>
+          <nav className="hidden md:flex items-center gap-7">
+            {NAV.map((n) => (
               <button
-                key={item.name}
-                onClick={() => scrollTo(item.href.substring(1))}
-                className={`text-sm font-mono transition-colors hover:text-primary ${
-                  activeSection === item.href.substring(1) ? "text-primary" : "text-muted-foreground"
+                key={n.id}
+                onClick={() => scrollTo(n.id)}
+                className={`text-xs font-mono transition-colors ${
+                  activeSection === n.id ? "text-zinc-100" : "text-zinc-500 hover:text-zinc-300"
                 }`}
-                data-testid={`nav-${item.name.toLowerCase()}`}
               >
-                <span className="text-primary/50 mr-2">/</span>
-                {item.name.toLowerCase()}
+                {n.label}
               </button>
             ))}
-          </div>
-        </div>
-      </nav>
-
-      {/* HERO — Full-screen Restraint design */}
-      <section id="hero" className="relative min-h-[100dvh] w-full bg-[#0a0a0a] flex flex-col items-center justify-center overflow-hidden">
-        <div className="restraint-grid absolute inset-0 z-0 pointer-events-none" />
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
-
-        {/* Corner status */}
-        <div className="absolute top-8 left-8 sm:top-12 sm:left-12 animate-hero-fade-2 z-10">
-          <span className="text-xs tracking-widest text-zinc-500 uppercase font-light">01 / available</span>
-        </div>
-
-        {/* Name + subtitle */}
-        <div className="relative z-10 flex flex-col items-center max-w-5xl px-6 sm:px-12">
-          <h1 className="font-['Playfair_Display'] text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] tracking-tight leading-[1.1] text-center animate-hero-fade-1 text-zinc-100 font-light">
-            Yashwanth<br />
-            <span className="italic opacity-80 pl-8 sm:pl-16">Booram</span>
-          </h1>
-          <p className="mt-12 md:mt-16 text-sm sm:text-base tracking-[0.2em] uppercase text-zinc-400 font-light animate-hero-fade-2 text-center">
-            Machine learning + full-stack engineering.
-          </p>
-        </div>
-
-        {/* Social links — bottom right */}
-        <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 flex flex-col gap-6 animate-hero-fade-3 z-10">
-          <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-github" aria-label="GitHub">
-            <Github strokeWidth={1.5} className="w-4 h-4" />
-          </a>
-          <a href="https://linkedin.com/in/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-linkedin" aria-label="LinkedIn">
-            <Linkedin strokeWidth={1.5} className="w-4 h-4" />
-          </a>
-          <a href="mailto:booramyashwanth@gmail.com" className="text-zinc-600 hover:text-zinc-200 transition-colors duration-500" data-testid="link-email" aria-label="Email">
-            <Mail strokeWidth={1.5} className="w-4 h-4" />
+          </nav>
+          <a
+            href="mailto:booramyashwanth@gmail.com"
+            className="hidden md:inline-flex items-center gap-2 text-xs font-mono border border-zinc-700 text-zinc-300 px-4 py-1.5 rounded hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+          >
+            get in touch
           </a>
         </div>
+      </header>
 
-        {/* Scroll indicator — bottom center */}
-        <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-hero-fade-3 z-10">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-zinc-600">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-zinc-600 to-transparent" />
-        </div>
+      {/* ── HERO ── */}
+      <section id="hero" className="relative min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        {/* Subtle grid */}
+        <div className="restraint-grid absolute inset-0 pointer-events-none opacity-60" />
+        {/* Radial vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(255,255,255,0.02)_0%,transparent_100%)] pointer-events-none" />
+
+        <motion.div
+          className="relative z-10 max-w-3xl"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12 } },
+          }}
+        >
+          <motion.p
+            className="text-xs font-mono text-zinc-600 uppercase tracking-[0.25em] mb-8"
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22,1,0.36,1] } } }}
+          >
+            ML Engineer · Full-Stack Developer
+          </motion.p>
+
+          <motion.h1
+            className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.08] text-zinc-50 mb-6"
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }}
+          >
+            Yashwanth Booram
+          </motion.h1>
+
+          <motion.p
+            className="text-base sm:text-lg text-zinc-400 font-light leading-relaxed max-w-xl mx-auto mb-12"
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22,1,0.36,1] } } }}
+          >
+            Building intelligent systems with machine learning<br className="hidden sm:block" /> and full-stack engineering.
+          </motion.p>
+
+          <motion.div
+            className="flex items-center justify-center gap-4 flex-wrap"
+            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22,1,0.36,1] } } }}
+          >
+            <button
+              onClick={() => scrollTo("projects")}
+              className="inline-flex items-center gap-2 bg-zinc-100 text-zinc-900 text-sm font-medium px-5 py-2.5 rounded hover:bg-white transition-colors"
+            >
+              View Projects
+            </button>
+            <a
+              href="https://github.com/yashwanthbooram"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-300 text-sm font-medium px-5 py-2.5 rounded hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+            >
+              <Github className="w-4 h-4" />
+              GitHub
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll hint */}
+        <motion.div
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+        >
+          <span className="text-[10px] font-mono text-zinc-700 uppercase tracking-[0.3em]">scroll</span>
+          <div className="w-px h-10 bg-gradient-to-b from-zinc-700 to-transparent" />
+        </motion.div>
       </section>
 
-      <main className="container mx-auto px-6 pt-24 pb-24 max-w-5xl relative z-10">
+      {/* ── MAIN CONTENT ── */}
+      <main className="max-w-5xl mx-auto px-6 pb-32">
 
         {/* ABOUT */}
-        <section id="about" className="py-24 border-t border-border/30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <span className="text-primary font-mono text-xl">01.</span>
-              <h2 className="text-3xl font-bold">About Me</h2>
-              <div className="h-px bg-border flex-1 ml-4" />
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-12 text-lg text-muted-foreground font-light leading-relaxed">
-              <div>
-                <p className="mb-6">
-                  I'm a B.Tech Computer Science student at Lovely Professional University, specializing in Machine Learning. My approach to engineering is grounded in the belief that great AI isn't just about training accurate models—it's about deploying them into systems that real people can use.
+        <section id="about" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <SectionLabel number="01" label="About" />
+          </FadeIn>
+          <div className="grid md:grid-cols-[1fr_1fr] gap-16">
+            <FadeIn delay={0.05}>
+              <div className="space-y-5 text-zinc-400 font-light leading-[1.75] text-[15px]">
+                <p>
+                  I'm a B.Tech Computer Science student at Lovely Professional University, specialising in Machine Learning. My engineering is grounded in the belief that great AI isn't just about accurate models — it's about deploying them into systems real people can use.
                 </p>
                 <p>
                   I've built systems ranging from high-accuracy deep learning models for satellite imagery to full-stack platforms powered by LLMs. I thrive in environments where data science meets product development.
                 </p>
+                <p className="text-zinc-500 text-sm">
+                  Based in India · Open to full-time opportunities and meaningful collaborations.
+                </p>
               </div>
-              <div className="bg-card border border-border/50 p-6 rounded-lg font-mono text-sm relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex items-center gap-2 mb-4 pb-4 border-b border-border/50">
-                  <Terminal className="w-4 h-4 text-primary" />
-                  <span className="text-muted-foreground">yashwanth.config</span>
-                </div>
-                <div className="space-y-2 text-muted-foreground">
-                  <p><span className="text-primary">const</span> location <span className="text-primary">=</span> <span className="text-accent">"India"</span>;</p>
-                  <p><span className="text-primary">const</span> education <span className="text-primary">=</span> <span className="text-accent">"B.Tech CSE"</span>;</p>
-                  <p><span className="text-primary">const</span> focus <span className="text-primary">=</span> [<span className="text-accent">"Machine Learning"</span>, <span className="text-accent">"Full-Stack"</span>];</p>
-                  <p><span className="text-primary">const</span> status <span className="text-primary">=</span> <span className="text-accent">"Open to new roles"</span>;</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* EXPERIENCE */}
-        <section id="experience" className="py-24 border-t border-border/30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <span className="text-primary font-mono text-xl">02.</span>
-              <h2 className="text-3xl font-bold">Experience</h2>
-              <div className="h-px bg-border flex-1 ml-4" />
-            </div>
-
-            <div className="relative pl-8 md:pl-0">
-              <div className="hidden md:block absolute left-[8.5rem] top-0 bottom-0 w-px bg-border/50" />
-              
-              <div className="relative flex flex-col md:flex-row gap-8 md:gap-16 group">
-                <div className="md:w-32 flex-shrink-0 pt-1">
-                  <span className="font-mono text-sm text-primary bg-primary/10 px-3 py-1 rounded border border-primary/20">
-                    2024 - 2025
-                  </span>
-                </div>
-                
-                <div className="hidden md:block absolute left-[8.5rem] top-3 w-3 h-3 rounded-full bg-background border-2 border-primary -translate-x-[7px] group-hover:bg-primary transition-colors z-10" />
-                
-                <div className="bg-card border border-border/50 p-8 rounded-lg flex-1 hover:border-primary/30 transition-colors">
-                  <h3 className="text-xl font-bold text-foreground mb-1">Generative AI Trainer</h3>
-                  <div className="text-muted-foreground font-medium mb-4 flex items-center gap-2">
-                    Outlier <span className="text-border">•</span> Freelance
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <div className="border border-zinc-800 rounded-lg p-6 font-mono text-sm bg-zinc-900/40">
+                <div className="flex items-center gap-2 mb-5 pb-4 border-b border-zinc-800">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-zinc-700" />
+                    <div className="w-3 h-3 rounded-full bg-zinc-700" />
+                    <div className="w-3 h-3 rounded-full bg-zinc-700" />
                   </div>
-                  <ul className="space-y-3 text-muted-foreground font-light mb-6">
-                    <li className="flex items-start">
-                      <ChevronRight className="w-5 h-5 text-primary shrink-0 mr-2 mt-0.5" />
-                      <span>Evaluated and optimized large language model outputs for sensitive content detection, improving consistency and contextual accuracy across multiple programming languages.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <ChevronRight className="w-5 h-5 text-primary shrink-0 mr-2 mt-0.5" />
-                      <span>Used Python, Java, C++, and JavaScript for prompt creation, testing, and analysis.</span>
-                    </li>
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="font-mono text-xs text-primary border-primary/20 bg-primary/5">LLMs</Badge>
-                    <Badge variant="outline" className="font-mono text-xs text-primary border-primary/20 bg-primary/5">Python</Badge>
-                    <Badge variant="outline" className="font-mono text-xs text-primary border-primary/20 bg-primary/5">Prompt Engineering</Badge>
-                  </div>
+                  <span className="text-zinc-600 text-xs ml-2">profile.ts</span>
+                </div>
+                <div className="space-y-1.5 text-zinc-500">
+                  <p><span className="text-zinc-400">const</span> location <span className="text-zinc-600">=</span> <span className="text-zinc-300">"India"</span>;</p>
+                  <p><span className="text-zinc-400">const</span> degree <span className="text-zinc-600">=</span> <span className="text-zinc-300">"B.Tech CSE"</span>;</p>
+                  <p><span className="text-zinc-400">const</span> focus <span className="text-zinc-600">=</span> [</p>
+                  <p className="pl-4"><span className="text-zinc-300">"Machine Learning"</span>,</p>
+                  <p className="pl-4"><span className="text-zinc-300">"Full-Stack Dev"</span>,</p>
+                  <p>];</p>
+                  <p className="pt-1"><span className="text-zinc-400">const</span> status <span className="text-zinc-600">=</span> <span className="text-zinc-300">"Open to roles"</span>;</p>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </FadeIn>
+          </div>
         </section>
 
         {/* PROJECTS */}
-        <section id="projects" className="py-24 border-t border-border/30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <span className="text-primary font-mono text-xl">03.</span>
-              <h2 className="text-3xl font-bold">Featured Projects</h2>
-              <div className="h-px bg-border flex-1 ml-4" />
+        <section id="projects" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <SectionLabel number="02" label="Projects" />
+          </FadeIn>
+          <div className="space-y-6">
+            {PROJECTS.map((p, i) => (
+              <FadeIn key={p.title} delay={i * 0.06}>
+                <div className="group border border-zinc-800 rounded-xl p-8 hover:border-zinc-600 transition-colors duration-300 bg-zinc-900/20 hover:bg-zinc-900/50">
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div>
+                      <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest block mb-2">{p.category} · {p.period}</span>
+                      <h3 className="text-xl font-semibold text-zinc-50">{p.title}</h3>
+                    </div>
+                    <a href={p.href} target="_blank" rel="noreferrer" className="shrink-0 mt-1 text-zinc-600 hover:text-zinc-200 transition-colors">
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6 mb-6 text-sm text-zinc-500 leading-relaxed">
+                    <div>
+                      <p className="text-[10px] font-mono text-zinc-700 uppercase tracking-widest mb-1.5">Problem</p>
+                      <p>{p.problem}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono text-zinc-700 uppercase tracking-widest mb-1.5">Approach</p>
+                      <p>{p.approach}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono text-zinc-700 uppercase tracking-widest mb-1.5">Impact</p>
+                      <p className="text-zinc-400">{p.impact}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {p.stack.map((t) => (
+                      <span key={t} className="text-[11px] font-mono text-zinc-500 border border-zinc-800 group-hover:border-zinc-700 px-2.5 py-1 rounded transition-colors">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        {/* EXPERIENCE */}
+        <section id="experience" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <SectionLabel number="03" label="Experience" />
+          </FadeIn>
+          <FadeIn delay={0.05}>
+            <div className="group border border-zinc-800 rounded-xl p-8 hover:border-zinc-600 transition-colors duration-300 bg-zinc-900/20 hover:bg-zinc-900/50">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                <div>
+                  <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest block mb-2">Dec 2024 – Jun 2025 · Freelance</span>
+                  <h3 className="text-xl font-semibold text-zinc-50">Generative AI Trainer</h3>
+                  <p className="text-sm text-zinc-500 mt-1">Outlier</p>
+                </div>
+              </div>
+              <ul className="space-y-3 text-sm text-zinc-400 leading-relaxed mb-6">
+                <li className="flex gap-3">
+                  <span className="text-zinc-700 shrink-0 mt-0.5">—</span>
+                  Evaluated and optimised large language model outputs for sensitive content detection, improving consistency and contextual accuracy across multiple programming languages.
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-zinc-700 shrink-0 mt-0.5">—</span>
+                  Utilised Python, Java, C++, and JavaScript for prompt creation, testing, and analysis.
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["LLMs", "Prompt Engineering", "Python", "Java", "C++", "JavaScript"].map((t) => (
+                  <span key={t} className="text-[11px] font-mono text-zinc-500 border border-zinc-800 group-hover:border-zinc-700 px-2.5 py-1 rounded transition-colors">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
-
-            <div className="grid gap-12">
-              {/* Project 1 */}
-              <Card className="bg-card border-border/50 overflow-hidden group hover:border-primary/30 transition-colors">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-[2fr_3fr] gap-0">
-                    <div className="bg-muted/30 p-8 flex items-center justify-center border-r border-border/50 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
-                      <Code2 className="w-24 h-24 text-primary/30 group-hover:text-primary/50 transition-colors group-hover:scale-110 duration-500" />
-                    </div>
-                    <div className="p-8 md:p-10 flex flex-col justify-center">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <span className="text-primary font-mono text-sm mb-2 block">Full-Stack Application</span>
-                          <h3 className="text-2xl font-bold">Movify</h3>
-                        </div>
-                        <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                          <Github className="w-6 h-6" />
-                        </a>
-                      </div>
-                      <p className="text-muted-foreground font-light mb-6 leading-relaxed">
-                        AI-Powered Full-Stack Movie Platform. Engineered a scalable RESTful API for user authentication and CRUD operations. Integrated an LLM to deliver intelligent features including a personalized recommendation engine and automatic review summarization.
-                      </p>
-                      <div className="flex flex-wrap gap-3 mt-auto">
-                        <span className="font-mono text-xs text-primary/70">React</span>
-                        <span className="font-mono text-xs text-primary/70">Node.js</span>
-                        <span className="font-mono text-xs text-primary/70">Express</span>
-                        <span className="font-mono text-xs text-primary/70">MongoDB</span>
-                        <span className="font-mono text-xs text-primary/70">LLM APIs</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Project 2 */}
-              <Card className="bg-card border-border/50 overflow-hidden group hover:border-accent/30 transition-colors">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-[3fr_2fr] gap-0">
-                    <div className="p-8 md:p-10 flex flex-col justify-center order-2 md:order-1">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <span className="text-accent font-mono text-sm mb-2 block">Deep Learning</span>
-                          <h3 className="text-2xl font-bold">Ship Detection in Satellite Imagery</h3>
-                        </div>
-                        <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-accent transition-colors">
-                          <Github className="w-6 h-6" />
-                        </a>
-                      </div>
-                      <p className="text-muted-foreground font-light mb-6 leading-relaxed">
-                        Developed a YOLOv3 CNN model for high-accuracy ship localization in maritime satellite imagery. Pre-processed images with normalization and bounding box extraction, achieving ~95% Training Accuracy and ~92% Validation Accuracy.
-                      </p>
-                      <div className="flex flex-wrap gap-3 mt-auto">
-                        <span className="font-mono text-xs text-accent/70">YOLOv3</span>
-                        <span className="font-mono text-xs text-accent/70">OpenCV</span>
-                        <span className="font-mono text-xs text-accent/70">CNN</span>
-                        <span className="font-mono text-xs text-accent/70">Python</span>
-                      </div>
-                    </div>
-                    <div className="bg-muted/30 p-8 flex items-center justify-center border-l border-border/50 relative overflow-hidden order-1 md:order-2">
-                      <div className="absolute inset-0 bg-gradient-to-bl from-accent/10 to-transparent opacity-50" />
-                      <Cpu className="w-24 h-24 text-accent/30 group-hover:text-accent/50 transition-colors group-hover:scale-110 duration-500" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Project 3 */}
-              <Card className="bg-card border-border/50 overflow-hidden group hover:border-primary/30 transition-colors">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-[2fr_3fr] gap-0">
-                    <div className="bg-muted/30 p-8 flex items-center justify-center border-r border-border/50 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
-                      <Database className="w-24 h-24 text-primary/30 group-hover:text-primary/50 transition-colors group-hover:scale-110 duration-500" />
-                    </div>
-                    <div className="p-8 md:p-10 flex flex-col justify-center">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <span className="text-primary font-mono text-sm mb-2 block">Data Analytics</span>
-                          <h3 className="text-2xl font-bold">Customer Behavior Analytics</h3>
-                        </div>
-                        <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                          <Github className="w-6 h-6" />
-                        </a>
-                      </div>
-                      <p className="text-muted-foreground font-light mb-6 leading-relaxed">
-                        Applied RFM analysis and K-Means clustering to segment retail customers into distinct groups. Determined optimal K using elbow method and visualized segments to generate actionable business insights for improving marketing ROI.
-                      </p>
-                      <div className="flex flex-wrap gap-3 mt-auto">
-                        <span className="font-mono text-xs text-primary/70">K-Means Clustering</span>
-                        <span className="font-mono text-xs text-primary/70">RFM Analysis</span>
-                        <span className="font-mono text-xs text-primary/70">Pandas</span>
-                        <span className="font-mono text-xs text-primary/70">Data Visualization</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
+          </FadeIn>
         </section>
 
         {/* SKILLS */}
-        <section id="skills" className="py-24 border-t border-border/30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <span className="text-primary font-mono text-xl">04.</span>
-              <h2 className="text-3xl font-bold">Technical Arsenal</h2>
-              <div className="h-px bg-border flex-1 ml-4" />
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-card border border-border/50 p-6 rounded-lg hover:border-primary/30 transition-colors">
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                  <Code2 className="w-6 h-6 text-primary" />
-                  <h3 className="text-lg font-bold">Languages & Core</h3>
+        <section id="skills" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <SectionLabel number="04" label="Skills" />
+          </FadeIn>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SKILLS.map((s, i) => (
+              <FadeIn key={s.group} delay={i * 0.06}>
+                <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900/20">
+                  <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-5">{s.group}</p>
+                  <ul className="space-y-2.5">
+                    {s.items.map((item) => (
+                      <li key={item} className="text-sm text-zinc-400 font-light flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-zinc-700 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiPython className="text-primary"/> Python</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><Terminal className="w-4 h-4 text-primary"/> Java</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiReact className="text-primary"/> React</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiNodedotjs className="text-primary"/> Node.js</div>
-                </div>
-              </div>
-
-              <div className="bg-card border border-border/50 p-6 rounded-lg hover:border-accent/30 transition-colors">
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                  <Cpu className="w-6 h-6 text-accent" />
-                  <h3 className="text-lg font-bold">ML & Frameworks</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiPytorch className="text-accent"/> PyTorch</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiTensorflow className="text-accent"/> TensorFlow</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiScikitlearn className="text-accent"/> Scikit-Learn</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiKeras className="text-accent"/> Keras</div>
-                </div>
-              </div>
-
-              <div className="bg-card border border-border/50 p-6 rounded-lg hover:border-primary/30 transition-colors">
-                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
-                  <Database className="w-6 h-6 text-primary" />
-                  <h3 className="text-lg font-bold">Data & Cloud</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiMongodb className="text-primary"/> MongoDB</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><SiMysql className="text-primary"/> MySQL</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><BarChart2 className="w-4 h-4 text-primary"/> Power BI</div>
-                  <div className="flex items-center gap-2 text-muted-foreground"><Cloud className="w-4 h-4 text-primary"/> AWS</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              </FadeIn>
+            ))}
+          </div>
         </section>
 
-        {/* EDUCATION & CERTIFICATIONS */}
-        <section id="education" className="py-24 border-t border-border/30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <span className="text-primary font-mono text-xl">05.</span>
-              <h2 className="text-3xl font-bold">Education & Certifications</h2>
-              <div className="h-px bg-border flex-1 ml-4" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12">
+        {/* EDUCATION */}
+        <section id="education" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <SectionLabel number="05" label="Education & Certifications" />
+          </FadeIn>
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Degrees */}
+            <FadeIn delay={0.05}>
               <div>
-                <h3 className="text-xl font-bold mb-8 flex items-center gap-2 text-foreground">
-                  <GraduationCap className="w-6 h-6 text-primary" />
-                  Academic Background
-                </h3>
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
-                  
-                  <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-primary bg-background text-primary shrink-0 z-10 relative shadow-[0_0_15px_rgba(var(--primary),0.5)]">
-                      <GraduationCap className="w-5 h-5" />
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-border/50 bg-card hover:border-primary/50 transition-colors ml-4 md:ml-0 md:mr-4">
-                      <div className="font-mono text-xs text-primary mb-1">Oct 2022 - Present</div>
-                      <h4 className="font-bold text-foreground">B.Tech in Computer Science</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Lovely Professional University</p>
-                      <p className="text-sm font-mono bg-primary/10 text-primary inline-block px-2 py-0.5 rounded">CGPA: 7.0</p>
-                    </div>
-                  </div>
-
-                  <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-border bg-background text-muted-foreground shrink-0 z-10 relative group-hover:border-primary group-hover:text-primary transition-colors">
-                      <GraduationCap className="w-5 h-5" />
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded border border-border/50 bg-card hover:border-primary/50 transition-colors ml-4 md:ml-0 md:ml-4">
-                      <div className="font-mono text-xs text-muted-foreground mb-1">2020 - 2022</div>
-                      <h4 className="font-bold text-foreground">Intermediate</h4>
-                      <p className="text-sm text-muted-foreground mb-2">Narayana Junior College</p>
-                      <p className="text-sm font-mono bg-muted text-muted-foreground inline-block px-2 py-0.5 rounded">78.9%</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold mb-8 flex items-center gap-2 text-foreground">
-                  <Award className="w-6 h-6 text-accent" />
-                  Certifications
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { title: "Machine Learning Specialization", org: "Stanford / DeepLearning.AI", date: "July 2025" },
-                    { title: "Generative AI with LLMs", org: "Coursera", date: "October 2023" },
-                    { title: "Dynamic Programming, Greedy Algorithms", org: "Univ. of Colorado Boulder", date: "October 2023" },
-                    { title: "Google Cybersecurity", org: "Google", date: "August 2022" }
-                  ].map((cert, i) => (
-                    <div key={i} className="p-5 border border-border/50 rounded bg-card hover:border-accent/40 transition-colors flex gap-4 items-start">
-                      <Award className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <div>
-                        <h4 className="font-bold text-foreground">{cert.title}</h4>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1"><span className="text-accent/50">@</span> {cert.org}</span>
-                          <span className="font-mono text-xs self-center bg-muted px-2 py-0.5 rounded">{cert.date}</span>
-                        </div>
-                      </div>
+                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-8">Academic</p>
+                <div className="space-y-8">
+                  {EDUCATION.map((e) => (
+                    <div key={e.degree} className="border-l border-zinc-800 pl-5 hover:border-zinc-600 transition-colors">
+                      <p className="text-[10px] font-mono text-zinc-600 mb-1">{e.period}</p>
+                      <h3 className="text-sm font-semibold text-zinc-100 mb-0.5">{e.degree}</h3>
+                      <p className="text-sm text-zinc-500">{e.school}</p>
+                      <p className="text-xs text-zinc-600 mt-0.5">{e.location} · {e.note}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </FadeIn>
+            {/* Certifications */}
+            <FadeIn delay={0.1}>
+              <div>
+                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-8">Certifications</p>
+                <div className="space-y-6">
+                  {CERTS.map((c) => (
+                    <div key={c.title} className="border-l border-zinc-800 pl-5 hover:border-zinc-600 transition-colors">
+                      <p className="text-[10px] font-mono text-zinc-600 mb-1">{c.date}</p>
+                      <h3 className="text-sm font-semibold text-zinc-100 mb-0.5">{c.title}</h3>
+                      <p className="text-sm text-zinc-500">{c.issuer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </section>
 
-        {/* FOOTER / CONTACT */}
-        <section className="py-24 border-t border-border/30 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsla(var(--primary)/0.05)_0%,transparent_70%)] pointer-events-none" />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative z-10"
-          >
-            <div className="font-mono text-primary mb-4">06. What's Next?</div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h2>
-            <p className="text-muted-foreground max-w-lg mx-auto mb-10 text-lg font-light">
-              I'm currently looking for new opportunities in Machine Learning and Full-Stack development. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            <a 
-              href="mailto:booramyashwanth@gmail.com" 
-              className="inline-flex items-center justify-center h-14 px-8 font-mono border border-primary text-primary hover:bg-primary/10 transition-colors rounded-md"
-              data-testid="btn-contact"
-            >
-              Say Hello
-            </a>
-
-            <div className="mt-32 pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground font-mono">
-              <div className="flex gap-6">
-                <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">GitHub</a>
-                <a href="https://linkedin.com/in/yashwanthbooram" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
-              </div>
-              <div>
-                Designed & Built by Yashwanth Booram
+        {/* CONTACT */}
+        <section id="contact" className="py-28 border-t border-zinc-800/60">
+          <FadeIn>
+            <div className="text-center max-w-xl mx-auto">
+              <p className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6">06 / Contact</p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-zinc-50 tracking-tight mb-5">
+                Let's build something together.
+              </h2>
+              <p className="text-zinc-500 font-light leading-relaxed mb-10">
+                Open to opportunities and meaningful collaborations.<br />
+                Whether it's a full-time role, freelance work, or just a conversation — I'd love to hear from you.
+              </p>
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <a
+                  href="mailto:booramyashwanth@gmail.com"
+                  className="inline-flex items-center gap-2 bg-zinc-100 text-zinc-900 text-sm font-medium px-5 py-2.5 rounded hover:bg-white transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  Send an email
+                </a>
+                <a
+                  href="https://linkedin.com/in/yashwanthbooram"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-300 text-sm font-medium px-5 py-2.5 rounded hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/yashwanthbooram"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-300 text-sm font-medium px-5 py-2.5 rounded hover:border-zinc-500 hover:text-zinc-100 transition-colors"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
               </div>
             </div>
-          </motion.div>
+          </FadeIn>
         </section>
       </main>
+
+      {/* FOOTER */}
+      <footer className="border-t border-zinc-800/60 py-8">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="font-mono text-xs text-zinc-700">yashwanth booram · {new Date().getFullYear()}</span>
+          <div className="flex items-center gap-5">
+            <a href="https://github.com/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-700 hover:text-zinc-400 transition-colors">
+              <Github className="w-4 h-4" />
+            </a>
+            <a href="https://linkedin.com/in/yashwanthbooram" target="_blank" rel="noreferrer" className="text-zinc-700 hover:text-zinc-400 transition-colors">
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a href="mailto:booramyashwanth@gmail.com" className="text-zinc-700 hover:text-zinc-400 transition-colors">
+              <Mail className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 }
