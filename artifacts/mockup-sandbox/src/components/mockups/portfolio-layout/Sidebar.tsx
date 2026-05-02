@@ -1,6 +1,6 @@
 export function Sidebar() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 font-['Outfit',sans-serif] flex">
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 flex" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* LEFT — Sticky sidebar */}
       <aside className="w-72 shrink-0 border-r border-zinc-800 flex flex-col justify-between p-10 sticky top-0 h-screen">
@@ -8,7 +8,7 @@ export function Sidebar() {
           <span className="font-mono font-bold text-xl tracking-tighter text-zinc-100 block mb-2">YB</span>
           <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-12">01 / available</span>
 
-          <h1 className="font-['Playfair_Display',serif] text-4xl font-light leading-tight text-zinc-100 mb-3">
+          <h1 className="text-4xl font-light leading-tight text-zinc-100 mb-3" style={{ fontFamily: "'Fraunces', serif", fontVariationSettings: "'opsz' 40" }}>
             Yashwanth<br /><span className="italic opacity-60">Booram</span>
           </h1>
           <p className="text-xs text-zinc-500 tracking-wider uppercase leading-relaxed mb-10">

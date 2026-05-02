@@ -1,6 +1,6 @@
 export function Bento() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 font-['Outfit',sans-serif] p-8">
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 p-8" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* Nav */}
       <nav className="flex justify-between items-center mb-12 pb-6 border-b border-zinc-800">
@@ -16,7 +16,7 @@ export function Bento() {
         <div className="col-span-8 bg-zinc-900 border border-zinc-800 rounded-2xl p-10 flex flex-col justify-between min-h-[220px]">
           <span className="text-xs font-mono text-zinc-600 tracking-widest uppercase">01 / available for work</span>
           <div>
-            <h1 className="font-['Playfair_Display',serif] text-6xl font-light leading-tight text-zinc-100">
+            <h1 className="text-6xl font-light leading-tight text-zinc-100" style={{ fontFamily: "'Fraunces', serif", fontVariationSettings: "'opsz' 60" }}>
               Yashwanth<br /><span className="italic opacity-70 pl-8">Booram</span>
             </h1>
           </div>

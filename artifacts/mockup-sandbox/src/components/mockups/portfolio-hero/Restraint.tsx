@@ -14,7 +14,7 @@ export function Restraint() {
       <div className="relative z-10 flex flex-col items-center w-full max-w-5xl px-6 sm:px-12">
         
         {/* Name - Extraordinary Typography */}
-        <h1 className="font-['Playfair_Display'] text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[1.1] text-center animate-slow-fade-1 text-zinc-100 font-light">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[1.1] text-center animate-slow-fade-1 text-zinc-100 font-light" style={{ fontFamily: "'Fraunces', serif", fontVariationSettings: "'opsz' 72" }}>
           Yashwanth<br />
           <span className="italic opacity-80 pl-8 sm:pl-16">Booram</span>
         </h1>

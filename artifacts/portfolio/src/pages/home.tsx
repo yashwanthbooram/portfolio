@@ -62,7 +62,7 @@ const CERTS = [
 ];
 
 const EDUCATION = [
-  { degree: "B.Tech — Computer Science & Engineering", school: "Lovely Professional University", location: "Punjab, India", period: "Oct 2022 – Present", note: "CGPA 7 · Specialisation: Machine Learning" },
+  { degree: "B.Tech — Computer Science & Engineering", school: "Lovely Professional University", location: "Punjab, India · Based in Hyderabad, Telangana", period: "Oct 2022 – Present", note: "CGPA 7 · Specialisation: Machine Learning" },
   { degree: "Intermediate (MPC)", school: "Narayana Junior College", location: "Hyderabad, Telangana", period: "Apr 2020 – Mar 2022", note: "78.9%" },
   { degree: "Matriculation", school: "Sri Chaitanya Techno School", location: "Hyderabad, Telangana", period: "Apr 2019 – Mar 2020", note: "100%" },
 ];
@@ -225,7 +225,7 @@ export default function Home() {
               <div className={`space-y-5 font-light leading-[1.8] text-[15px] ${textMuted}`}>
                 <p>I'm a B.Tech Computer Science student at Lovely Professional University, specialising in Machine Learning. My engineering is grounded in the belief that great AI isn't just about accurate models — it's about deploying them into systems real people can use.</p>
                 <p>I've built systems ranging from high-accuracy deep learning models for satellite imagery to full-stack platforms powered by LLMs. I thrive where data science meets product development.</p>
-                <p className={`text-sm ${textDim}`}>Based in India · Open to full-time opportunities and meaningful collaborations.</p>
+                <p className={`text-sm ${textDim}`}>Based in Hyderabad, Telangana · Open to full-time opportunities and meaningful collaborations.</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -237,7 +237,7 @@ export default function Home() {
                   <span className={`text-xs ml-2 ${textDim}`}>profile.ts</span>
                 </div>
                 <div className="space-y-1.5">
-                  <p><span className={monoColor}>const</span> <span className={monoValue}>location</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"India"</span>;</p>
+                  <p><span className={monoColor}>const</span> <span className={monoValue}>location</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Hyderabad, Telangana"</span>;</p>
                   <p><span className={monoColor}>const</span> <span className={monoValue}>degree</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"B.Tech CSE"</span>;</p>
                   <p><span className={monoColor}>const</span> <span className={monoValue}>focus</span> <span className={monoComment}>=</span> [</p>
                   <p className="pl-4"><span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Machine Learning"</span>,</p>

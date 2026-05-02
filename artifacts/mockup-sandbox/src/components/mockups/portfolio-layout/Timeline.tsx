@@ -1,6 +1,6 @@
 export function Timeline() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 font-['Outfit',sans-serif]">
+    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* Nav */}
       <nav className="flex justify-between items-center px-12 py-6 border-b border-zinc-800/60">
@@ -14,7 +14,7 @@ export function Timeline() {
       <div className="px-12 pt-20 pb-16 border-b border-zinc-800/60">
         <div className="max-w-3xl">
           <span className="text-xs font-mono text-zinc-600 tracking-widest uppercase block mb-8">ML Engineer · Full-Stack Developer</span>
-          <h1 className="font-['Playfair_Display',serif] text-8xl font-light leading-[1.05] text-zinc-100 mb-12">
+          <h1 className="text-8xl font-light leading-[1.05] text-zinc-100 mb-12" style={{ fontFamily: "'Fraunces', serif", fontVariationSettings: "'opsz' 72" }}>
             Yashwanth<br />
             <span className="italic opacity-60 pl-20">Booram</span>
           </h1>

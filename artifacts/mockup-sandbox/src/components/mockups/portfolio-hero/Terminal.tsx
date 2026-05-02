@@ -14,7 +14,7 @@ const commands: Command[] = [
       <div className="mb-4">
         <div>Name: Yashwanth Booram</div>
         <div>Title: Machine Learning / Full-Stack Engineer</div>
-        <div>Location: India</div>
+        <div>Location: Hyderabad, Telangana</div>
         <div>Status: Available for opportunities</div>
       </div>
     ),
