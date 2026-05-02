@@ -84,16 +84,16 @@
   --sidebar: 230 40% 98%;
   --sidebar-foreground: 230 40% 10%;
   --sidebar-border: 230 20% 90%;
-  --sidebar-primary: 270 100% 60%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-primary: 0 0% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
   --sidebar-accent: 230 20% 90%;
   --sidebar-accent-foreground: 230 40% 10%;
-  --sidebar-ring: 270 100% 60%;
+  --sidebar-ring: 0 0% 10%;
   --popover: 0 0% 100%;
   --popover-foreground: 230 40% 10%;
   --popover-border: 230 20% 90%;
-  --primary: 270 100% 60%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 0 0% 10%;
+  --primary-foreground: 0 0% 98%;
   --secondary: 230 20% 90%;
   --secondary-foreground: 230 40% 10%;
   --muted: 230 20% 96%;
@@ -103,9 +103,9 @@
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 230 20% 90%;
-  --ring: 270 100% 60%;
+  --ring: 0 0% 10%;
   
-  --chart-1: 270 100% 60%;
+  --chart-1: 0 0% 30%;
   --chart-2: 210 100% 60%;
   --chart-3: 150 100% 60%;
   --chart-4: 30 100% 60%;
@@ -153,16 +153,16 @@
   --sidebar: 230 40% 6%;
   --sidebar-foreground: 210 20% 90%;
   --sidebar-border: 230 30% 16%;
-  --sidebar-primary: 270 80% 65%;
-  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-primary: 0 0% 92%;
+  --sidebar-primary-foreground: 0 0% 8%;
   --sidebar-accent: 230 30% 16%;
   --sidebar-accent-foreground: 210 20% 90%;
-  --sidebar-ring: 270 80% 65%;
+  --sidebar-ring: 0 0% 92%;
   --popover: 230 40% 8%;
   --popover-foreground: 210 20% 90%;
   --popover-border: 230 30% 16%;
-  --primary: 270 80% 65%;
-  --primary-foreground: 0 0% 100%;
+  --primary: 0 0% 92%;
+  --primary-foreground: 0 0% 8%;
   --secondary: 230 30% 16%;
   --secondary-foreground: 210 20% 90%;
   --muted: 230 30% 12%;
@@ -172,9 +172,9 @@
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 230 30% 16%;
-  --ring: 270 80% 65%;
+  --ring: 0 0% 92%;
   
-  --chart-1: 270 80% 65%;
+  --chart-1: 0 0% 80%;
   --chart-2: 210 100% 65%;
   --chart-3: 150 100% 65%;
   --chart-4: 30 100% 65%;
