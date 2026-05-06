@@ -130,13 +130,10 @@ export default function Home() {
 
   return (
     <div className={`${bg} ${text} min-h-screen transition-colors duration-300`} style={{ fontFamily: SANS }}>
-
       {/* ── NAV ── */}
       <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${navBg}`}>
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <button onClick={() => scrollTo("hero")} className={`text-sm font-medium tracking-tight ${text}`} style={{ fontFamily: MONO }}>
-            yashwanth.
-          </button>
+          <button onClick={() => scrollTo("hero")} className={`text-sm font-medium tracking-tight ${text}`} style={{ fontFamily: MONO }}>yashwanthhhhh</button>
           <nav className="hidden md:flex items-center gap-7">
             {NAV.map((n) => (
               <button key={n.id} onClick={() => scrollTo(n.id)}
@@ -164,7 +161,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
       {/* ── HERO ── */}
       <section id="hero" className="relative min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <div className={`absolute inset-0 pointer-events-none ${heroGrid}`} />
@@ -213,7 +209,6 @@ export default function Home() {
           <div className={`w-px h-10 bg-gradient-to-b ${dark ? "from-zinc-700" : "from-zinc-300"} to-transparent`} />
         </motion.div>
       </section>
-
       {/* ── MAIN ── */}
       <main className="max-w-5xl mx-auto px-6 pb-32">
 
@@ -404,7 +399,6 @@ export default function Home() {
           </FadeIn>
         </section>
       </main>
-
       {/* ── FOOTER ── */}
       <footer className={`border-t py-8 ${dividerLine}`}>
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
