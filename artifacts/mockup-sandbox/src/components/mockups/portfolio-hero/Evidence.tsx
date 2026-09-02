@@ -99,7 +99,7 @@ export function Evidence() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">LOCATION</span>
-                  <span className="text-slate-300">India Sector</span>
+                  <span className="text-slate-300">Hyderabad Base</span>
                 </div>
               </div>
 

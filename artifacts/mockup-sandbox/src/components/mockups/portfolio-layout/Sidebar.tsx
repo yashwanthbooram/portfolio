@@ -12,7 +12,7 @@ export function Sidebar() {
             Yashwanth<br /><span className="italic opacity-60">Booram</span>
           </h1>
           <p className="text-xs text-zinc-500 tracking-wider uppercase leading-relaxed mb-10">
-            Machine Learning<br />Full-Stack Engineering
+             AI Application Security<br />Machine Learning
           </p>
 
           <nav className="space-y-1">
@@ -52,15 +52,15 @@ export function Sidebar() {
           <div className="max-w-2xl">
             <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-6">01 / About</span>
             <p className="text-base text-zinc-400 leading-relaxed mb-4">
-              B.Tech CSE student at Lovely Professional University, specialising in Machine Learning. My engineering is grounded in the belief that great AI isn't just accurate models — it's about deploying them into systems real people can use.
+               Computer Science & Engineering graduate from Lovely Professional University, focused on Machine Learning and AI application security. I build intelligent systems with the guardrails and deployment workflows needed to make them dependable.
             </p>
             <p className="text-sm text-zinc-500 leading-relaxed">
-              I've built deep learning models for satellite imagery and full-stack LLM-powered platforms. I thrive where data science meets product development.
+               I've worked across reinforcement-learning traffic control, computer vision, LLM-powered products, and adversarial AI red teaming. I thrive where model behavior meets secure, production-ready engineering.
             </p>
             <div className="mt-8 font-mono text-xs text-zinc-700 space-y-1.5 border-l border-zinc-800 pl-4">
-              <p>location = <span className="text-zinc-500">"India"</span></p>
-              <p>education = <span className="text-zinc-500">"B.Tech CSE"</span></p>
-              <p>focus = [<span className="text-zinc-500">"ML"</span>, <span className="text-zinc-500">"Full-Stack"</span>]</p>
+               <p>location = <span className="text-zinc-500">"Hyderabad, Telangana"</span></p>
+               <p>education = <span className="text-zinc-500">"B.Tech CSE · 7.23"</span></p>
+               <p>focus = [<span className="text-zinc-500">"AI Security"</span>, <span className="text-zinc-500">"ML"</span>]</p>
               <p>status = <span className="text-zinc-500">"Open to roles"</span></p>
             </div>
           </div>
@@ -72,17 +72,17 @@ export function Sidebar() {
             <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-8">02 / Experience</span>
             <div className="flex gap-8">
               <div className="shrink-0 pt-0.5">
-                <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded">2024–2025</span>
+                 <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded">May–Aug 2026</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-zinc-100 mb-1">Generative AI Trainer</h3>
-                <p className="text-sm text-zinc-600 mb-4">Outlier · Freelance</p>
+                 <h3 className="text-lg font-bold text-zinc-100 mb-1">AI Application Security Engineer</h3>
+                 <p className="text-sm text-zinc-600 mb-4">Accenture · Trainee</p>
                 <ul className="space-y-2 text-sm text-zinc-500">
-                  <li className="flex gap-2"><span className="text-zinc-700 shrink-0">—</span> Evaluated and optimised LLM outputs for sensitive content detection across multiple programming languages.</li>
-                  <li className="flex gap-2"><span className="text-zinc-700 shrink-0">—</span> Prompt engineering in Python, Java, C++, and JavaScript.</li>
+                   <li className="flex gap-2"><span className="text-zinc-700 shrink-0">—</span> Built a Python defense gateway for a Qwen2 enterprise GenAI application to mitigate prompt injection and credential leakage.</li>
+                   <li className="flex gap-2"><span className="text-zinc-700 shrink-0">—</span> Added GitHub Actions, Bandit, Gitleaks, Burp Suite, and OWASP ZAP to security and red-team workflows.</li>
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {["LLMs","Prompt Engineering","Python"].map(t => (
+                   {["Qwen2","AI Red Teaming","GitHub Actions","Burp Suite"].map(t => (
                     <span key={t} className="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 rounded">{t}</span>
                   ))}
                 </div>
@@ -97,9 +97,9 @@ export function Sidebar() {
             <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-8">03 / Projects</span>
             <div className="space-y-8">
               {[
-                { label: "Full-Stack", title: "Movify", desc: "AI-Powered Movie Platform. Scalable RESTful API with LLM-driven recommendation engine and automatic review summarisation.", stack: ["React","Node.js","Express","MongoDB","LLM APIs"] },
+                 { label: "Reinforcement Learning", title: "Smart Adaptive Traffic Signals", desc: "PyTorch DQN agent with YOLOv8n and OpenCV vision pipeline. Reduced average wait time by 35% and increased throughput by 22%.", stack: ["PyTorch","YOLOv8n","FastAPI","Docker"] },
+                 { label: "Full-Stack · AI", title: "Movify", desc: "AI-powered movie platform with a scalable Node.js and Express.js REST API, personalised recommendations, and automatic review summarisation.", stack: ["Node.js","Express.js","React.js","LLM APIs"] },
                 { label: "Deep Learning", title: "Ship Detection in Satellite Imagery", desc: "YOLOv3 CNN for high-accuracy ship localisation in maritime satellite imagery. ~95% training accuracy, ~92% validation accuracy.", stack: ["YOLOv3","OpenCV","CNN","Python"] },
-                { label: "Data Analytics", title: "Customer Behaviour Analytics", desc: "RFM analysis and K-Means clustering to segment retail customers. Elbow method for optimal K, actionable marketing insights.", stack: ["K-Means","RFM Analysis","Pandas"] },
               ].map(p => (
                 <div key={p.title} className="border-l border-zinc-800 pl-6 hover:border-zinc-600 transition-colors">
                   <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-1">{p.label}</span>
@@ -122,19 +122,19 @@ export function Sidebar() {
               <div>
                 <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-3">Languages</p>
                 <div className="space-y-2 text-zinc-500">
-                  {["Python","Java","JavaScript","SQL"].map(s => <p key={s}>{s}</p>)}
+                   {["Python","SQL","Java"].map(s => <p key={s}>{s}</p>)}
                 </div>
               </div>
               <div>
-                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-3">ML / AI</p>
+                 <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-3">Security & AI</p>
                 <div className="space-y-2 text-zinc-500">
-                  {["PyTorch","TensorFlow","Scikit-Learn","Keras"].map(s => <p key={s}>{s}</p>)}
+                   {["PyTorch","YOLO","TensorFlow","AI Red Teaming"].map(s => <p key={s}>{s}</p>)}
                 </div>
               </div>
               <div>
-                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-3">Stack</p>
+                 <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-3">Backend & Cloud</p>
                 <div className="space-y-2 text-zinc-500">
-                  {["React","Node.js","MongoDB","AWS"].map(s => <p key={s}>{s}</p>)}
+                   {["Node.js","FastAPI","PostgreSQL","Docker"].map(s => <p key={s}>{s}</p>)}
                 </div>
               </div>
             </div>
@@ -147,23 +147,24 @@ export function Sidebar() {
             <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest block mb-8">05 / Education</span>
             <div className="space-y-6">
               <div className="flex gap-8">
-                <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded h-fit shrink-0">2022–2026</span>
+                 <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded h-fit shrink-0">2022–2026</span>
                 <div>
                   <h3 className="text-sm font-bold text-zinc-100 mb-0.5">B.Tech Computer Science</h3>
-                  <p className="text-xs text-zinc-600">Lovely Professional University · Specialisation: ML</p>
+                   <p className="text-xs text-zinc-600">Lovely Professional University · CGPA 7.23</p>
                 </div>
               </div>
               <div className="flex gap-8">
                 <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded h-fit shrink-0 opacity-0">2022</span>
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-100 mb-0.5">Deep Learning A-Z — Udemy</h3>
+                   <h3 className="text-sm font-bold text-zinc-100 mb-0.5">AI Application Security & DevSecOps</h3>
+                   <p className="text-xs text-zinc-600">Accenture · August 2026</p>
                 </div>
               </div>
               <div className="flex gap-8">
                 <span className="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-1 rounded h-fit shrink-0 opacity-0">2022</span>
                 <div>
-                  <h3 className="text-sm font-bold text-zinc-100 mb-0.5">Machine Learning Specialisation — Coursera</h3>
-                  <p className="text-xs text-zinc-600">Stanford / DeepLearning.AI</p>
+                   <h3 className="text-sm font-bold text-zinc-100 mb-0.5">Enterprise Technical Foundations</h3>
+                   <p className="text-xs text-zinc-600">Accenture / Tekstac · July 2026</p>
                 </div>
               </div>
             </div>

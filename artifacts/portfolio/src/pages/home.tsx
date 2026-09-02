@@ -16,55 +16,55 @@ const NAV = [
 
 const PROJECTS = [
   {
-    title: "Movify",
-    category: "Full-Stack · AI Platform",
-    period: "Jun – Aug 2025",
-    problem: "Build a movie platform where users get personalised recommendations and readable review summaries without wading through raw text.",
-    approach: "Scalable RESTful API with Node.js + Express for auth and CRUD. Integrated an LLM for a personalised recommendation engine and automatic review summarisation. Dynamic React UI with component-based architecture.",
-    impact: "End-to-end AI-powered product shipped solo, demonstrating full ownership from data layer to UI.",
-    stack: ["React", "Node.js", "Express.js", "MongoDB", "LLM APIs"],
+    title: "Smart Adaptive Traffic Signal Management System using Computer Vision and AI",
+    category: "Reinforcement Learning · Computer Vision",
+    period: "Dec 2025 – Apr 2026",
+    problem: "Optimise traffic signal phases in real time so busy intersections can move more vehicles with less waiting.",
+    approach: "Built a PyTorch Deep Q-Network agent with a YOLOv8n and OpenCV vision pipeline. Used homography transformations to convert pixel-space detections into real-world queue lengths, then served inference through an asynchronous FastAPI backend with PostgreSQL and Docker.",
+    impact: "35% lower average vehicle wait time · 22% higher throughput · sub-100ms action inference",
+    stack: ["PyTorch", "DQN", "YOLOv8n", "OpenCV", "FastAPI", "PostgreSQL", "Docker"],
     href: "https://github.com/yashwanthbooram",
   },
   {
-    title: "Ship Detection in Satellite Imagery",
+    title: "Movify: AI-Powered Full-Stack Movie Platform",
+    category: "Full-Stack · AI Platform",
+    period: "Jun 2025 – Aug 2025",
+    problem: "Build a movie platform where users get personalised recommendations and readable review summaries without wading through raw text.",
+    approach: "Engineered a scalable RESTful API with Node.js and Express.js for authentication, movie data, and review CRUD operations. Integrated an LLM for personalised recommendations and automatic review summarisation.",
+    impact: "End-to-end AI-powered product shipped solo, demonstrating full ownership from API design to intelligent product features.",
+    stack: ["Node.js", "Express.js", "React.js", "MongoDB", "LLM APIs"],
+    href: "https://github.com/yashwanthbooram",
+  },
+  {
+    title: "Ship Detection in Satellite Imagery Using Deep Learning",
     category: "Deep Learning · Computer Vision",
-    period: "Mar – Apr 2025",
+    period: "Mar 2025 – Apr 2025",
     problem: "Detect and localise ships in high-resolution maritime satellite images where manual review is impractical at scale.",
-    approach: "Pre-processed images with normalisation and bounding-box extraction. Developed a YOLOv3 CNN model fine-tuned for maritime scenarios.",
+    approach: "Developed a YOLOv3 convolutional neural network with image normalisation and bounding-box extraction pipelines for maritime satellite imagery.",
     impact: "~95% training accuracy · ~92% validation accuracy",
     stack: ["YOLOv3", "CNN", "OpenCV", "Python"],
-    href: "https://github.com/yashwanthbooram",
-  },
-  {
-    title: "Customer Behaviour Analytics",
-    category: "Data Analytics · Machine Learning",
-    period: "Jun – Jul 2024",
-    problem: "Help a retail business move from gut-feel marketing to data-driven customer targeting.",
-    approach: "RFM (Recency, Frequency, Monetary) analysis + K-Means clustering to segment customers into five groups. Elbow method (WCSS) for optimal K, scatter-plot visualisations.",
-    impact: "Actionable insights to target high-value customers and improve marketing ROI.",
-    stack: ["K-Means Clustering", "RFM Analysis", "Pandas", "Matplotlib"],
     href: "https://github.com/yashwanthbooram",
   },
 ];
 
 const SKILLS = [
-  { group: "Languages", items: ["Python", "Java", "JavaScript", "C++", "SQL"] },
-  { group: "ML / AI", items: ["PyTorch", "TensorFlow", "Scikit-Learn", "Keras", "OpenCV", "Pandas", "NumPy"] },
-  { group: "Full-Stack", items: ["React", "Node.js", "Express.js", "MongoDB", "REST APIs"] },
-  { group: "Data & Cloud", items: ["MySQL", "Power BI", "AWS", "Google Colab", "Matplotlib"] },
+  { group: "Languages", items: ["Python", "SQL", "Java"] },
+  { group: "Machine Learning & AI", items: ["Scikit-learn", "PyTorch", "YOLO", "TensorFlow", "OpenCV", "Prompt Injection", "AI Red Teaming"] },
+  { group: "Backend & Cloud", items: ["Node.js", "Express.js", "React.js", "FastAPI", "PostgreSQL", "AWS", "Docker", "Git", "GitHub Actions (CI/CD)"] },
+  { group: "Security & DevSecOps", items: ["OWASP Top 10 (Web & LLM)", "Burp Suite", "ZAP", "Bandit (SAST)", "JWT Authentication"] },
 ];
 
 const CERTS = [
-  { title: "Machine Learning Specialisation", issuer: "Stanford / DeepLearning.AI · Coursera", date: "Jul 2025" },
-  { title: "Generative AI with Large Language Models", issuer: "Coursera", date: "Oct 2023" },
-  { title: "Dynamic Programming & Greedy Algorithms", issuer: "University of Colorado Boulder", date: "Oct 2023" },
+  { title: "AI Application Security & DevSecOps", issuer: "Accenture · 360-hour corporate training", date: "Aug 2026" },
+  { title: "Enterprise Technical Foundations", issuer: "Accenture / Tekstac", date: "Jul 2026" },
+  { title: "Machine Learning Specialization", issuer: "Stanford Online & DeepLearning.AI", date: "Jul 2025" },
   { title: "Google Cybersecurity", issuer: "Google", date: "Aug 2022" },
 ];
 
 const EDUCATION = [
-  { degree: "B.Tech — Computer Science & Engineering", school: "Lovely Professional University", location: "Punjab, India · Based in Hyderabad, Telangana", period: "Oct 2022 – Present", note: "CGPA 7 · Specialisation: Machine Learning" },
-  { degree: "Intermediate (MPC)", school: "Narayana Junior College", location: "Hyderabad, Telangana", period: "Apr 2020 – Mar 2022", note: "78.9%" },
-  { degree: "Matriculation", school: "Sri Chaitanya Techno School", location: "Hyderabad, Telangana", period: "Apr 2019 – Mar 2020", note: "100%" },
+  { degree: "B.Tech — Computer Science & Engineering", school: "Lovely Professional University", location: "Phagwara, Punjab", period: "Oct 2022 – Jun 2026", note: "CGPA 7.23" },
+  { degree: "Intermediate", school: "Narayana Junior College", location: "Hyderabad, Telangana", period: "Jun 2020 – May 2022", note: "78.9%" },
+  { degree: "Matriculation", school: "Sri Chaitanya Techno School", location: "Hyderabad, Telangana", period: "Jun 2019 – Mar 2020", note: "100%" },
 ];
 
 function FadeIn({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -175,7 +175,7 @@ export default function Home() {
             style={{ fontFamily: MONO }}
             variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }}
           >
-            ML Engineer · Full-Stack Developer
+            AI Application Security Engineer · ML Engineer
           </motion.p>
 
           <motion.h1
@@ -197,7 +197,7 @@ export default function Home() {
             className={`text-base sm:text-lg font-light leading-relaxed max-w-lg mx-auto ${textMuted}`}
             variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }}
           >
-            Building intelligent systems with machine learning<br className="hidden sm:block" /> and full-stack engineering.
+            Building secure, intelligent systems with machine learning<br className="hidden sm:block" /> and backend engineering.
           </motion.p>
         </motion.div>
 
@@ -218,9 +218,9 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-16">
             <FadeIn delay={0.05}>
               <div className={`space-y-5 leading-[1.8] text-[17px] ${textMuted}`}>
-                <p>I'm a B.Tech Computer Science student at Lovely Professional University, specialising in Machine Learning. My engineering is grounded in the belief that great AI isn't just about accurate models — it's about deploying them into systems real people can use.</p>
-                <p>I've built systems ranging from high-accuracy deep learning models for satellite imagery to full-stack platforms powered by LLMs. I thrive where data science meets product development.</p>
-                <p className={`text-sm ${textDim}`}>Based in Hyderabad, Telangana · Open to full-time opportunities and meaningful collaborations.</p>
+                <p>I'm a Computer Science & Engineering graduate from Lovely Professional University, focused on Machine Learning and AI application security. I build intelligent systems with the guardrails, APIs, and deployment workflows needed to make them dependable.</p>
+                <p>I've worked across reinforcement-learning traffic control, computer vision, LLM-powered products, and adversarial AI red teaming. I thrive where model behavior meets secure, production-ready engineering.</p>
+                <p className={`text-sm ${textDim}`}>Based in Hyderabad, Telangana · Open to full-time opportunities in ML engineering, AI security, and backend development.</p>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
@@ -233,10 +233,11 @@ export default function Home() {
                 </div>
                 <div className="space-y-1.5">
                   <p><span className={monoColor}>const</span> <span className={monoValue}>location</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Hyderabad, Telangana"</span>;</p>
-                  <p><span className={monoColor}>const</span> <span className={monoValue}>degree</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"B.Tech CSE"</span>;</p>
+                  <p><span className={monoColor}>const</span> <span className={monoValue}>degree</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"B.Tech CSE · 7.23"</span>;</p>
                   <p><span className={monoColor}>const</span> <span className={monoValue}>focus</span> <span className={monoComment}>=</span> [</p>
+                  <p className="pl-4"><span className={dark ? "text-zinc-300" : "text-zinc-700"}>"AI Application Security"</span>,</p>
                   <p className="pl-4"><span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Machine Learning"</span>,</p>
-                  <p className="pl-4"><span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Full-Stack Dev"</span>,</p>
+                  <p className="pl-4"><span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Backend Systems"</span>,</p>
                   <p>];</p>
                   <p className="pt-1"><span className={monoColor}>const</span> <span className={monoValue}>status</span> <span className={monoComment}>=</span> <span className={dark ? "text-zinc-300" : "text-zinc-700"}>"Open to roles"</span>;</p>
                 </div>
@@ -287,15 +288,16 @@ export default function Home() {
             <div className={`group border rounded-xl p-8 transition-colors duration-300 ${border} ${cardBg} ${cardHover}`}>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
                 <div>
-                  <span className={`text-xs uppercase tracking-widest block mb-2 ${textDim}`} style={{ fontFamily: MONO }}>Dec 2024 – Jun 2025 · Freelance</span>
-                  <h3 className={`text-xl font-semibold ${text}`} style={{ fontFamily: SERIF, fontVariationSettings: "'opsz' 20" }}>Generative AI Trainer</h3>
-                  <p className={`text-sm mt-1 ${textMuted}`}>Outlier</p>
+                  <span className={`text-xs uppercase tracking-widest block mb-2 ${textDim}`} style={{ fontFamily: MONO }}>May 2026 – Aug 2026 · Trainee</span>
+                  <h3 className={`text-xl font-semibold ${text}`} style={{ fontFamily: SERIF, fontVariationSettings: "'opsz' 20" }}>AI Application Security Engineer</h3>
+                  <p className={`text-sm mt-1 ${textMuted}`}>Accenture</p>
                 </div>
               </div>
               <ul className={`space-y-3 text-[16px] leading-relaxed mb-6 ${textMuted}`}>
                 {[
-                  "Evaluated and optimised large language model outputs for sensitive content detection, improving consistency and contextual accuracy across multiple programming languages.",
-                  "Utilised Python, Java, C++, and JavaScript for prompt creation, testing, and analysis.",
+                  "Architected and secured an enterprise Generative AI application built with the Qwen2 LLM, engineering a multi-layered Python defense gateway to mitigate prompt injection and credential leakage.",
+                  "Designed DevSecOps CI/CD pipelines via GitHub Actions, integrating Bandit (SAST) and Gitleaks to enforce automated security gates for machine learning infrastructure.",
+                  "Conducted adversarial AI red teaming and end-to-end API vulnerability assessments using Burp Suite and OWASP ZAP to patch backend execution flaws.",
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
                     <span className={`shrink-0 mt-0.5 ${textDim}`}>—</span>
@@ -304,7 +306,7 @@ export default function Home() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-2">
-                {["LLMs", "Prompt Engineering", "Python", "Java", "C++", "JavaScript"].map((t) => (
+                {["Qwen2", "Prompt Injection", "AI Red Teaming", "Python", "GitHub Actions", "Bandit", "Gitleaks", "Burp Suite", "OWASP ZAP"].map((t) => (
                   <span key={t} className={`text-[11px] border px-2.5 py-1 rounded transition-colors ${tagBorder}`} style={{ fontFamily: MONO }}>{t}</span>
                 ))}
               </div>
@@ -375,8 +377,8 @@ export default function Home() {
                 Let's build something<br /><em>together.</em>
               </h2>
               <p className={`font-light leading-relaxed mb-10 ${textMuted}`}>
-                Open to opportunities and meaningful collaborations.<br />
-                Whether it's a full-time role, freelance work, or just a conversation.
+                Open to full-time opportunities in ML engineering, AI security, and backend development.<br />
+                If you're building something thoughtful, I'd love to hear about it.
               </p>
               <div className="flex items-center justify-center gap-4 flex-wrap">
                 <a href="mailto:booramyashwanth@gmail.com"

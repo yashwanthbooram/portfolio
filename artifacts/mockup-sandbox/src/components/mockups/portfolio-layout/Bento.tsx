@@ -25,8 +25,8 @@ export function Bento() {
         <div className="col-span-4 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 flex flex-col justify-between min-h-[220px]">
           <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">Role</span>
           <div>
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">Machine Learning &<br />Full-Stack Engineering.</p>
-            <p className="text-xs font-mono text-zinc-600">B.Tech CSE · LPU · India</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">AI Application Security<br />& Machine Learning.</p>
+            <p className="text-xs font-mono text-zinc-600">B.Tech CSE · LPU · 7.23</p>
           </div>
           <div className="flex gap-3 text-zinc-600">
             <span className="text-xs font-mono hover:text-zinc-200 cursor-pointer transition-colors">GitHub</span>
@@ -41,11 +41,11 @@ export function Bento() {
         {/* Big project */}
         <div className="col-span-7 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent" />
-          <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-4 block">Full-Stack · Featured</span>
-          <h2 className="text-2xl font-bold text-zinc-100 mb-3">Movify</h2>
-          <p className="text-sm text-zinc-500 leading-relaxed mb-6">AI-Powered Movie Platform. RESTful API, LLM-driven recommendation engine, and automatic review summarisation.</p>
+          <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-4 block">Computer Vision · Featured</span>
+          <h2 className="text-2xl font-bold text-zinc-100 mb-3">Smart Traffic Signals</h2>
+          <p className="text-sm text-zinc-500 leading-relaxed mb-6">DQN reinforcement learning and YOLOv8n computer vision for adaptive traffic control. 35% less wait time, 22% higher throughput.</p>
           <div className="flex flex-wrap gap-2">
-            {["React","Node.js","MongoDB","LLM APIs"].map(t => (
+            {["PyTorch","DQN","YOLOv8n","FastAPI","Docker"].map(t => (
               <span key={t} className="text-[10px] font-mono text-zinc-500 border border-zinc-700 px-2 py-0.5 rounded">{t}</span>
             ))}
           </div>
@@ -58,9 +58,9 @@ export function Bento() {
             <p className="text-xs text-zinc-500 leading-relaxed">YOLOv3 CNN · ~95% train acc · Satellite imagery</p>
           </div>
           <div className="flex-1 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-            <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-2 block">Data Analytics</span>
-            <h3 className="text-base font-bold text-zinc-100 mb-2">Customer Behaviour</h3>
-            <p className="text-xs text-zinc-500 leading-relaxed">K-Means · RFM Analysis · Marketing ROI</p>
+            <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-2 block">Full-Stack · AI</span>
+            <h3 className="text-base font-bold text-zinc-100 mb-2">Movify</h3>
+            <p className="text-xs text-zinc-500 leading-relaxed">Node.js · Express.js · LLM recommendations · Review summaries</p>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export function Bento() {
         <div className="col-span-5 bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
           <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6 block">04 / Skills</span>
           <div className="flex flex-wrap gap-2">
-            {["Python","PyTorch","TensorFlow","Scikit-Learn","Keras","React","Node.js","MongoDB","MySQL","AWS","Power BI","YOLOv3","LLMs"].map(s => (
+            {["Python","PyTorch","YOLO","TensorFlow","OpenCV","FastAPI","PostgreSQL","AWS","Docker","Burp Suite","AI Red Teaming"].map(s => (
               <span key={s} className="text-xs font-mono text-zinc-400 border border-zinc-700 px-3 py-1 rounded-full">{s}</span>
             ))}
           </div>
@@ -81,12 +81,12 @@ export function Bento() {
           <span className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6 block">02 / Experience</span>
           <div className="flex gap-6">
             <div className="shrink-0">
-              <span className="text-xs font-mono text-zinc-500 border border-zinc-700 px-2 py-1 rounded">2024–2025</span>
+              <span className="text-xs font-mono text-zinc-500 border border-zinc-700 px-2 py-1 rounded">May–Aug 2026</span>
             </div>
             <div>
-              <h3 className="text-base font-bold text-zinc-100 mb-1">Generative AI Trainer</h3>
-              <p className="text-xs text-zinc-500 mb-3">Outlier · Freelance</p>
-              <p className="text-sm text-zinc-500 leading-relaxed">Evaluated and optimised LLM outputs for sensitive content detection. Python, Java, C++, and JavaScript prompt engineering.</p>
+              <h3 className="text-base font-bold text-zinc-100 mb-1">AI Application Security Engineer</h3>
+              <p className="text-xs text-zinc-500 mb-3">Accenture · Trainee</p>
+              <p className="text-sm text-zinc-500 leading-relaxed">Secured a Qwen2 enterprise GenAI application with a Python defense gateway, DevSecOps gates, and adversarial AI red teaming.</p>
             </div>
           </div>
         </div>
@@ -98,15 +98,15 @@ export function Bento() {
         <div className="grid grid-cols-3 gap-8">
           <div>
             <h3 className="text-base font-bold text-zinc-100 mb-1">B.Tech CSE</h3>
-            <p className="text-xs text-zinc-500">Lovely Professional University · 2022–2026</p>
+            <p className="text-xs text-zinc-500">Lovely Professional University · 2022–2026 · CGPA 7.23</p>
           </div>
           <div>
-            <h3 className="text-base font-bold text-zinc-100 mb-1">Deep Learning A-Z</h3>
-            <p className="text-xs text-zinc-500">Udemy Certification</p>
+            <h3 className="text-base font-bold text-zinc-100 mb-1">AI Security & DevSecOps</h3>
+            <p className="text-xs text-zinc-500">Accenture · 360-hour training</p>
           </div>
           <div>
-            <h3 className="text-base font-bold text-zinc-100 mb-1">Machine Learning</h3>
-            <p className="text-xs text-zinc-500">Coursera · Stanford / DeepLearning.AI</p>
+            <h3 className="text-base font-bold text-zinc-100 mb-1">Enterprise Technical Foundations</h3>
+            <p className="text-xs text-zinc-500">Accenture / Tekstac</p>
           </div>
         </div>
       </div>
