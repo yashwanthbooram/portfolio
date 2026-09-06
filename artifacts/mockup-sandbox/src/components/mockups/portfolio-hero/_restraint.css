@@ -1,0 +1,23 @@
+@keyframes slow-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slow-fade-1 {
+  animation: slow-fade-in 2s ease-in-out 0.5s both;
+}
+
+.animate-slow-fade-2 {
+  animation: slow-fade-in 2s ease-in-out 1.5s both;
+}
+
+.animate-slow-fade-3 {
+  animation: slow-fade-in 2s ease-in-out 2.5s both;
+}
+
+.bg-subtle-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}

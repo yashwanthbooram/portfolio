@@ -1,0 +1,92 @@
+Create a minimalist, high-end developer portfolio website with a strong focus on clarity, typography, and smooth user experience.
+
+The design should feel modern, clean, and intentional — not like a generic AI-generated template. Avoid clutter, bright gradients, or overused layouts. Use a monochrome or muted color palette (black, white, soft gray, subtle accent color) with lots of whitespace.
+
+Follow a “less but better” design philosophy inspired by premium product design (like Apple or linear.app style).
+
+🎯 STRUCTURE & SECTIONS
+1. Hero Section
+Name: Yashwanth Booram
+Tagline: “Building intelligent systems with machine learning and full-stack engineering”
+Short intro (1–2 lines, impactful, not generic)
+Subtle animation (fade/slide, no flashy effects)
+CTA buttons:
+View Projects
+GitHub
+2. About Me
+Write in first-person
+Focus on:
+Machine Learning + AI interest
+Real-world problem solving
+Clean engineering mindset
+Keep it concise but thoughtful
+3. Projects (MOST IMPORTANT)
+
+Display as clean cards or minimal sections (no heavy shadows or clutter)
+
+Include:
+
+Movify (AI Movie Platform)
+Ship Detection using YOLOv3
+Customer Segmentation (K-Means + RFM)
+
+For each project:
+
+Problem → Approach → Impact (short and sharp)
+Tech stack tags (minimal chips)
+GitHub link
+
+Add subtle hover interactions (scale or underline, nothing flashy)
+
+4. Skills
+
+Display as:
+
+Clean grouped layout (not progress bars)
+Categories:
+Languages
+ML/AI Tools
+Full Stack
+Data & Cloud
+5. Experience
+Highlight Generative AI Trainer role (Outlier)
+Focus on:
+LLM evaluation
+Prompt engineering
+Multi-language work
+6. Contact / Footer
+Minimal
+Include:
+Email
+GitHub
+LinkedIn
+Add a short closing line:
+“Open to opportunities and meaningful collaborations.”
+🎨 DESIGN RULES (VERY IMPORTANT)
+Use clean typography (Inter / SF Pro / modern sans-serif)
+Large headings, small clean body text
+No unnecessary icons
+No bright gradients or neon colors
+Smooth scrolling
+Subtle transitions only
+Grid-based layout
+⚡ INTERACTIONS
+Smooth scroll
+Hover effects (very subtle)
+Minimal animation (fade-in on scroll)
+Fast loading
+🚫 AVOID
+Generic templates
+Loud colors
+Over-animation
+Skill bars
+“Creative designer” style layouts
+💡 GOAL
+
+The portfolio should feel like:
+
+A serious ML engineer’s personal site
+Clean, confident, and focused
+Different from typical AI-generated portfolios
+
+It should impress recruiters within 5–10 seconds.
