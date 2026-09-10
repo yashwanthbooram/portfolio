@@ -173,29 +173,29 @@ export default function Home() {
           <motion.p
             className={`text-xs uppercase tracking-[0.28em] mb-8 ${textDim}`}
             style={{ fontFamily: MONO }}
-            variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }}
+            variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }}
           >
-            AI Application Security Engineer · ML Engineer
+            AI Application Security Engineer · MLSecOps Engineer
           </motion.p>
 
           <motion.h1
             className={`text-[clamp(3rem,10vw,7rem)] font-light leading-[1.05] tracking-tight mb-3 ${text}`}
             style={{ fontFamily: SERIF, fontVariationSettings: "'opsz' 72" }}
-            variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22,1,0.36,1] } } }}
+            variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } }}
           >
             Yashwanth
           </motion.h1>
           <motion.h1
             className={`text-[clamp(3rem,10vw,7rem)] font-light leading-[1.05] tracking-tight mb-12 ${dark ? "text-zinc-400" : "text-zinc-500"}`}
             style={{ fontFamily: SERIF, fontStyle: "italic", fontVariationSettings: "'opsz' 72" }}
-            variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.05, ease: [0.22,1,0.36,1] } } }}
+            variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] } } }}
           >
             Booram.
           </motion.h1>
 
           <motion.p
             className={`text-base sm:text-lg font-light leading-relaxed max-w-lg mx-auto ${textMuted}`}
-            variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }}
+            variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }}
           >
             Building secure, intelligent systems with machine learning<br className="hidden sm:block" /> and backend engineering.
           </motion.p>
@@ -227,7 +227,7 @@ export default function Home() {
               <div className={`border rounded-xl p-6 text-sm ${codeBg}`} style={{ fontFamily: MONO }}>
                 <div className="flex items-center gap-2 mb-5 pb-4" style={{ borderBottom: `1px solid ${dark ? "#27272a" : "#e4e4e7"}` }}>
                   <div className="flex gap-1.5">
-                    {[0,1,2].map(i => <div key={i} className={`w-3 h-3 rounded-full ${dark ? "bg-zinc-700" : "bg-zinc-200"}`} />)}
+                    {[0, 1, 2].map(i => <div key={i} className={`w-3 h-3 rounded-full ${dark ? "bg-zinc-700" : "bg-zinc-200"}`} />)}
                   </div>
                   <span className={`text-xs ml-2 ${textDim}`}>profile.ts</span>
                 </div>
